@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtsttlop"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:text="STT  "
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtmalop"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="MÃ LỚP"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txttenlop"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:hint="Ten lớp"
+            android:text="ten lop"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/btndeletelop"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/delete" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

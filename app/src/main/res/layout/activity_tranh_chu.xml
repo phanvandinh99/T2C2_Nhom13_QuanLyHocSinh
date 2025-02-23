@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityTranhChu">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="1dp"
+        app:srcCompat="@drawable/logoong" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Trang chủ"
+        android:textColor="#FF5722"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnquanlylophoc"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/haha"
+            android:maxLines="2"
+            android:text="quản lý lớp học"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btnquanlysinhvien"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/haha"
+            android:maxLines="2"
+            android:text="Quản lý sinh viên"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btnthoat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="100dp"
+        android:background="#FF9800"
+        android:text="Thoát"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/logopoly" />
+
+</LinearLayout>
