@@ -133,9 +133,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     private void addDataDefault(SQLiteDatabase database){
-        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('truonglv','123456','0329385635',null)");
-        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('nghia','123456','0347360427',null)");
-        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('nam','123456','0334704530',null)");
+        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('Nam','123456','0329385635',null)");
+        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('GiaHuy','123456','0347360427',null)");
+        database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('TranHuy','123456','0334704530',null)");
         database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('vu','123456','0327551251',null)");
         database.execSQL("INSERT INTO "+TB_TAIKHOAN+" VALUES ('sang','123456','0933545121',null)");
 
