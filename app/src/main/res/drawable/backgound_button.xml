@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    //hiển thị không nhấn button-->
+<item android:state_pressed="false">
+    <shape>
+        <!--            Tạo màu button-->
+        <solid android:color="#0073A5"></solid>
+
+        <!--            Tạo viền cho button-->
+        <stoke android:width="3dp"
+            android:color="#FFFFFF"></stoke>
+
+        <!--            Bo tròn 4 góc-->
+        <corners android:radius="35dp"></corners>
+    </shape>
+</item>
+
+
+</selector>

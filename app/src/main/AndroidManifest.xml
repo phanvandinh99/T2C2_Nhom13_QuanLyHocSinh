@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.demo3_asm">
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    package="com.example.studentscoremanagement">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Quản lý Sinh Viên"
-        android:roundIcon="@drawable/logoong"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ActivytiDsTaiKhoan"></activity>
-        <activity android:name=".ActivityTranhChu"></activity>
-        <activity android:name=".ActivityDangKi" />
-        <activity android:name=".DemoSpriner" />
-        <activity android:name=".ActivityLopHoc" />
-        <activity android:name=".ActivityUpdateSinhVien" />
-        <activity android:name=".ActivityQuanLySinhVien" />
-        <activity android:name=".ActivityLogin">
+        android:theme="@style/Theme.StudentScoreManagement">
+
+        <activity
+            android:name=".DSSV"
+            android:exported="false" />
+        <activity
+            android:name=".ReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".CustomDialog"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".UserInforActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseClassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
