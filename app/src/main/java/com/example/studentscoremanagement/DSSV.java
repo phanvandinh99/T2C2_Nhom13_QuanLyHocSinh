@@ -134,7 +134,7 @@ public class DSSV extends AppCompatActivity {
         EditText editTen = (EditText) dialog.findViewById(R.id.editTextNhapTen);
         EditText editPhai = (EditText) dialog.findViewById(R.id.editTextNhapPhai);
         EditText editNSinh = (EditText) dialog.findViewById(R.id.editTextNhapNgaySinh);
-        Button btnHuy = (Button) dialog.findViewById(R.id.buttonHUY);
+        Button btnHuy = (Button) dialog.findViewById(R.id.btnHuy);
         Button btnThem = (Button) dialog.findViewById(R.id.buttonLUU);
 
         btnThem.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +177,7 @@ public class DSSV extends AppCompatActivity {
         EditText editTen = (EditText) dialog.findViewById(R.id.editTextNhapTen);
         EditText editPhai = (EditText) dialog.findViewById(R.id.editTextNhapPhai);
         EditText editNSinh = (EditText) dialog.findViewById(R.id.editTextNhapNgaySinh);
-        Button btnHuy = (Button) dialog.findViewById(R.id.buttonHUY);
+        Button btnHuy = (Button) dialog.findViewById(R.id.btnHuy);
         Button btnThem = (Button) dialog.findViewById(R.id.buttonLUU);
 
 
