@@ -8,4 +8,8 @@
         android:id="@+id/userFragment"
         android:title="Info"
         android:icon="@drawable/ic_user"/>
+    <item
+        android:id="@+id/classManagementFragment"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Quản lý Lớp" />
 </menu>

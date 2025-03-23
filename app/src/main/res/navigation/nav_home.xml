@@ -11,6 +11,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
+        android:id="@+id/classManagementFragment"
+        android:name="com.example.studentscoremanagement.fragment.ClassManagementFragment"
+        android:label="Quản lý Lớp" />
+    <fragment
         android:id="@+id/userFragment"
         android:name="com.example.studentscoremanagement.fragment.UserFragment"
         android:label="fragment_user"

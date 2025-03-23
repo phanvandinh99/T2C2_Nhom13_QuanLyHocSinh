@@ -42,8 +42,7 @@ public class DSSVFragment extends Fragment {
     EditText edtTimKiem;
     ImageView imageTimKiem;
 
-    public DSSVFragment() {
-    }
+    public DSSVFragment() {}
 
     public static DSSVFragment newInstance(String param1) {
         DSSVFragment fragment = new DSSVFragment();
@@ -120,35 +119,51 @@ public class DSSVFragment extends Fragment {
                     " WHERE (hocSinh_maHocSinh LIKE '%" + noiDung + "%' OR hocSinh_ho LIKE '%" + noiDung + "%' OR hocSinh_ten LIKE '%" + noiDung + "%') AND " +
                     DBHelper.COL_HOCSINH_MALOP + "= '" + CLASS_ID + "'");
             arrayHocSinh.clear();
-            while (dataHS.moveToNext()) {
+            if (dataHS != null && dataHS.moveToFirst()) {
+                do {
+                    String id = dataHS.getString(0);
+                    String ho = dataHS.getString(1);
+                    String ten = dataHS.getString(2);
+                    String phai = dataHS.getString(3);
+                    String ngaySinh = dataHS.getString(4);
+                    arrayHocSinh.add(new HocSinh(id, ho, ten, phai, ngaySinh));
+                } while (dataHS.moveToNext());
+            }
+            dataHS.close();
+            adapter.notifyDataSetChanged();
+        });
+    }
+
+    private void GetDataHocSinh() {
+        arrayHocSinh.clear();
+
+        // Lấy tên giáo viên chủ nhiệm
+        Cursor getTeacherName = database.GetData("SELECT " + DBHelper.COL_LOP_CHUNHIEM + " FROM " + DBHelper.TB_LOP + " WHERE " + DBHelper.COL_LOP_MALOP + "='" + CLASS_ID + "'");
+        if (getTeacherName != null && getTeacherName.moveToFirst()) {
+            teacherName = getTeacherName.getString(0);
+        } else {
+            teacherName = "Chưa có giáo viên"; // Xử lý khi không tìm thấy lớp
+            Log.d("DSSVFragment", "No teacher found for class: " + CLASS_ID);
+        }
+        if (getTeacherName != null) getTeacherName.close();
+
+        // Lấy danh sách học sinh
+        Cursor dataHS = database.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='" + CLASS_ID + "'");
+        if (dataHS != null && dataHS.moveToFirst()) {
+            do {
                 String id = dataHS.getString(0);
                 String ho = dataHS.getString(1);
                 String ten = dataHS.getString(2);
                 String phai = dataHS.getString(3);
                 String ngaySinh = dataHS.getString(4);
                 arrayHocSinh.add(new HocSinh(id, ho, ten, phai, ngaySinh));
-            }
-            adapter.notifyDataSetChanged();
-        });
-    }
+            } while (dataHS.moveToNext());
+        } else {
+            Toast.makeText(getContext(), "Lớp " + CLASS_ID + " chưa có học sinh", Toast.LENGTH_SHORT).show();
+            Log.d("DSSVFragment", "No students found for class: " + CLASS_ID);
+        }
+        if (dataHS != null) dataHS.close();
 
-    private void GetDataHocSinh() {
-        Cursor getTeacherName = database.GetData("SELECT " + DBHelper.COL_LOP_CHUNHIEM + " FROM " + DBHelper.TB_LOP + " WHERE " + DBHelper.COL_LOP_MALOP + "='" + CLASS_ID + "'");
-        getTeacherName.moveToFirst();
-        do {
-            teacherName = getTeacherName.getString(0);
-        } while (getTeacherName.moveToNext());
-        Cursor dataHS = database.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='" + CLASS_ID + "'");
-        arrayHocSinh.clear();
-        dataHS.moveToFirst();
-        do {
-            String id = dataHS.getString(0);
-            String ho = dataHS.getString(1);
-            String ten = dataHS.getString(2);
-            String phai = dataHS.getString(3);
-            String ngaySinh = dataHS.getString(4);
-            arrayHocSinh.add(new HocSinh(id, ho, ten, phai, ngaySinh));
-        } while (dataHS.moveToNext());
         adapter.notifyDataSetChanged();
         textClassId.setText(CLASS_ID);
         textGV.setText(teacherName);
@@ -156,9 +171,13 @@ public class DSSVFragment extends Fragment {
 
     private void GetDataLop() {
         Cursor data = database.GetData("SELECT " + DBHelper.COL_LOP_MALOP + " FROM " + DBHelper.TB_LOP);
-        while (data.moveToNext()) {
-            arrayLop.add(data.getString(0));
+        arrayLop.clear();
+        if (data != null && data.moveToFirst()) {
+            do {
+                arrayLop.add(data.getString(0));
+            } while (data.moveToNext());
         }
+        if (data != null) data.close();
     }
 
     private void ThemSinhVien() {
@@ -170,7 +189,7 @@ public class DSSVFragment extends Fragment {
         EditText editTen = dialog.findViewById(R.id.editTextNhapTen);
         EditText editPhai = dialog.findViewById(R.id.editTextNhapPhai);
         EditText editNSinh = dialog.findViewById(R.id.editTextNhapNgaySinh);
-        Button btnHuy = dialog.findViewById(R.id.btnHuy); // Đã sửa từ buttonHUY
+        Button btnHuy = dialog.findViewById(R.id.btnHuy);
         Button btnThem = dialog.findViewById(R.id.buttonLUU);
 
         btnThem.setOnClickListener(v -> {
@@ -188,7 +207,7 @@ public class DSSVFragment extends Fragment {
                     dialog.dismiss();
                     GetDataHocSinh();
                 } catch (Exception e) {
-                    Log.d("print", e.getMessage());
+                    Log.d("DSSVFragment", "Error adding student: " + e.getMessage());
                 }
             }
         });
@@ -210,9 +229,14 @@ public class DSSVFragment extends Fragment {
     }
 
     private void loadTrangThaiButton() {
-        if (CLASS_ID.equals(arrayLop.get(0))) {
+        if (arrayLop.isEmpty()) {
             btnTruoc.setEnabled(false);
+            btnSau.setEnabled(false);
+        } else if (CLASS_ID.equals(arrayLop.get(0))) {
+            btnTruoc.setEnabled(false);
+            btnSau.setEnabled(true);
         } else if (CLASS_ID.equals(arrayLop.get(arrayLop.size() - 1))) {
+            btnTruoc.setEnabled(true);
             btnSau.setEnabled(false);
         } else {
             btnTruoc.setEnabled(true);

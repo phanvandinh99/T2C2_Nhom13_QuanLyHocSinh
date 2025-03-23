@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.studentscoremanagement.fragment.ClassManagementFragment;
 import com.example.studentscoremanagement.fragment.HomeFragment;
 import com.example.studentscoremanagement.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements EventListener{
                         transaction.addToBackStack(null);
                         transaction.commit();
                         return true;
+                    case R.id.classManagementFragment:
+                        selectedFragment = ClassManagementFragment.newInstance();
+                        break;
 
                 }
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
