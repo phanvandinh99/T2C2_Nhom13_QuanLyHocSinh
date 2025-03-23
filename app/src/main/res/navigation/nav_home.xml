@@ -13,7 +13,11 @@
     <fragment
         android:id="@+id/classManagementFragment"
         android:name="com.example.studentscoremanagement.fragment.ClassManagementFragment"
-        android:label="Quản lý Lớp" />
+        android:label="QL Lớp" />
+    <fragment
+        android:id="@+id/subjectManagementFragment"
+        android:name="com.example.studentscoremanagement.fragment.SubjectManagementFragment"
+        android:label="QL Môn học" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.studentscoremanagement.fragment.UserFragment"

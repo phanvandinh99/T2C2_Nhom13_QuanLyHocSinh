@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.studentscoremanagement.fragment.ClassManagementFragment;
 import com.example.studentscoremanagement.fragment.HomeFragment;
+import com.example.studentscoremanagement.fragment.SubjectManagementFragment;
 import com.example.studentscoremanagement.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -60,7 +61,9 @@ public class MainActivity extends AppCompatActivity implements EventListener{
                     case R.id.classManagementFragment:
                         selectedFragment = ClassManagementFragment.newInstance();
                         break;
-
+                    case R.id.subjectManagementFragment:
+                        selectedFragment = SubjectManagementFragment.newInstance();
+                        break;
                 }
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment, selectedFragment);

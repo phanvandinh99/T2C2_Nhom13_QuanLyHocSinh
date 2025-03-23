@@ -9,6 +9,10 @@
         android:title="Info"
         android:icon="@drawable/ic_user"/>
     <item
+        android:id="@+id/subjectManagementFragment"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Quản lý Môn học" />
+    <item
         android:id="@+id/classManagementFragment"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Quản lý Lớp" />
