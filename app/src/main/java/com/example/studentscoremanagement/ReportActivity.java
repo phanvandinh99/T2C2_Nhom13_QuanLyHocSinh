@@ -22,7 +22,6 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -79,7 +78,7 @@ public class ReportActivity extends AppCompatActivity {
         getIdClass();
         dbHelper = new DBHelper(this);
         ArrayList<HocSinh> hocSinhs = new ArrayList<>();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+idClass+"'");
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+idClass+"'", new String[]{String.valueOf(maHocSinh)});
         cursor.moveToFirst();
         do {
             HocSinh hocSinh = new HocSinh();

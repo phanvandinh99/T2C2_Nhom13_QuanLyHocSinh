@@ -3,7 +3,6 @@ package com.example.studentscoremanagement.Model;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.studentscoremanagement.DBHelper;
 
@@ -72,7 +71,7 @@ public class TaiKhoan {
 
     public boolean checkLogin(DBHelper db){
         Cursor getInfor=db.GetData("SELECT "+DBHelper.COL_TAIKHOAN_SDT+", "+DBHelper.COL_TAIKHOAN_ANH+" FROM "+DBHelper.TB_TAIKHOAN
-                +" WHERE "+DBHelper.COL_TAIKHOAN_TEN+"='"+this.tenTaiKhoan+"' AND "+DBHelper.COL_TAIKHOAN_MATKHAU+"='"+this.matKhau+"'");
+                +" WHERE "+DBHelper.COL_TAIKHOAN_TEN+"='"+this.tenTaiKhoan+"' AND "+DBHelper.COL_TAIKHOAN_MATKHAU+"='"+this.matKhau+"'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         if(getInfor.moveToNext()){
             this.setSdt(getInfor.getString(0));
             this.setAnh(getInfor.getBlob(1));
@@ -83,7 +82,7 @@ public class TaiKhoan {
 
     public void updateDataFromDataBase (DBHelper db) {
         Cursor getInfor=db.GetData("SELECT "+DBHelper.COL_TAIKHOAN_MATKHAU+", "+DBHelper.COL_TAIKHOAN_SDT+", "+DBHelper.COL_TAIKHOAN_ANH+" FROM "+DBHelper.TB_TAIKHOAN
-                +" WHERE "+DBHelper.COL_TAIKHOAN_TEN+"='"+this.tenTaiKhoan+"'");
+                +" WHERE "+DBHelper.COL_TAIKHOAN_TEN+"='"+this.tenTaiKhoan+"'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
 
         if(getInfor.moveToNext()){
             setMatKhau(getInfor.getString(0));

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
     android:orientation="vertical"
     android:background="@drawable/background_login">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +17,14 @@
             android:layout_gravity="center"
             android:src="@drawable/app_logo"/>
         <TextView
-            style="@style/style_title"
-            android:text="Quản Lý Điểm Học Sinh"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Đăng Nhập Học Sinh"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,14 +33,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tài khoản"/>
+            android:text="Tên đăng nhập"/>
         <EditText
-            android:id="@+id/txtTK"
-            style="@style/style_editText"
+            android:id="@+id/txtStudentUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/custom_edit_text"
-            android:backgroundTint="#F4F4F4"
             android:padding="5dp"
             android:textColor="@color/black"/>
+
         <TextView
             android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
@@ -44,40 +49,27 @@
             android:text="Mật khẩu"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_password"
-            style="@style/style_editText"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/txtMK"
+                android:id="@+id/txtStudentPassword"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/custom_edit_text"
-                android:backgroundTint="#F4F4F4"
-                android:textSize="15sp"
+                android:inputType="textPassword"
                 android:padding="5dp"
-                android:textColor="@color/black"
-                android:inputType="textPassword"/>
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            android:id="@+id/btnLogin"
-            android:padding="15dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/custom_button"
-            android:textColor="@color/white"
-            android:text="Đăng nhập"/>
-        <!-- Thêm nút đăng nhập sinh viên -->
+
         <Button
             android:id="@+id/btnStudentLogin"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/custom_button"
-            android:textColor="@color/white"
-            android:text="Đăng nhập sinh viên"/>
+            android:text="Đăng nhập"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>

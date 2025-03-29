@@ -57,7 +57,7 @@ public class ClassManagementFragment extends Fragment {
 
     private void loadClasses() {
         classList.clear();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_LOP);
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_LOP, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         while (cursor.moveToNext()) {
             String maLop = cursor.getString(0);
             String chuNhiem = cursor.getString(1);

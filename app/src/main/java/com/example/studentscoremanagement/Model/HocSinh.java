@@ -1,7 +1,6 @@
 package com.example.studentscoremanagement.Model;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.example.studentscoremanagement.DBHelper;
 
@@ -93,7 +92,7 @@ public class HocSinh {
         Cursor cursor=db.GetData("SELECT "+DBHelper.COL_DIEM_MAMONHOC+", "+DBHelper.COL_MONHOC_TENMONHOC+", "
                 +DBHelper.COL_MONHOC_HESO+", "+DBHelper.COL_DIEM_DIEM
                 +" FROM "+DBHelper.TB_MONHOC+" LEFT OUTER  JOIN "+DBHelper.TB_DIEM+" ON "+DBHelper.COL_MONHOC_MAMONHOC+"="+DBHelper.COL_DIEM_MAMONHOC+
-                " AND "+DBHelper.COL_DIEM_MAHOCSINH+" ="+this.maHS);
+                " AND "+DBHelper.COL_DIEM_MAHOCSINH+" ="+this.maHS, new String[]{String.valueOf(maHS)});
         cursor.moveToFirst();
 
         do {

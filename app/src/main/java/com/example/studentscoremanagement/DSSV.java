@@ -91,7 +91,7 @@ public class DSSV extends AppCompatActivity {
 
     // để data ra mh
     private void GetDataHocSinh(){
-        Cursor dataHS = database.GetData("SELECT * FROM "+DBHelper.TB_HOCSINH+" WHERE "+DBHelper.COL_HOCSINH_MALOP+"='"+idClass+"'");
+        Cursor dataHS = database.GetData("SELECT * FROM "+DBHelper.TB_HOCSINH+" WHERE "+DBHelper.COL_HOCSINH_MALOP+"='"+idClass+"'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         dataHS.moveToFirst();
         do
         {

@@ -57,7 +57,7 @@ public class SubjectManagementFragment extends Fragment {
 
     private void loadSubjects() {
         subjectList.clear();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_MONHOC);
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_MONHOC, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 String maMH = cursor.getString(0);

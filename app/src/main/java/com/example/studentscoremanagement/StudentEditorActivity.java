@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -75,7 +74,7 @@ public class StudentEditorActivity extends AppCompatActivity {
     }
 
     private void loadDanhSachHocSinh() {
-        Cursor cursor = dbHelper.GetData("SELECT " + DBHelper.COL_HOCSINH_MAHOCSINH + " FROM " + DBHelper.TB_HOCSINH);
+        Cursor cursor = dbHelper.GetData("SELECT " + DBHelper.COL_HOCSINH_MAHOCSINH + " FROM " + DBHelper.TB_HOCSINH, new String[]{String.valueOf(maHocSinh)});
         while (cursor.moveToNext()) {
             dsHocSinh.add(cursor.getInt(0));
         }
@@ -84,7 +83,7 @@ public class StudentEditorActivity extends AppCompatActivity {
 
     private void loadMonHoc() {
         diemMonHocList.clear();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_MONHOC);
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_MONHOC, new String[]{String.valueOf(maHocSinh)});
         while (cursor.moveToNext()) {
             String maMonHoc = String.valueOf(cursor.getInt(0));
             String tenMonHoc = cursor.getString(1);
@@ -95,7 +94,7 @@ public class StudentEditorActivity extends AppCompatActivity {
     }
 
     private void loadThongTinHocSinh(String maHS) {
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MAHOCSINH + " = " + maHS);
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MAHOCSINH + " = " + maHS, new String[]{String.valueOf(maHocSinh)});
         if (cursor.moveToFirst()) {
             editTextMaHS.setText(maHS);
             editTextNhapHo.setText(cursor.getString(1));
@@ -109,7 +108,7 @@ public class StudentEditorActivity extends AppCompatActivity {
         // Tải điểm
         for (DiemMonHocDTO diemMonHoc : diemMonHocList) {
             Cursor diemCursor = dbHelper.GetData("SELECT " + DBHelper.COL_DIEM_DIEM + " FROM " + DBHelper.TB_DIEM +
-                    " WHERE " + DBHelper.COL_DIEM_MAHOCSINH + " = " + maHS + " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + diemMonHoc.getMaMH());
+                    " WHERE " + DBHelper.COL_DIEM_MAHOCSINH + " = " + maHS + " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + diemMonHoc.getMaMH(), new String[]{String.valueOf(maHocSinh)});
             if (diemCursor.moveToFirst()) {
                 diemMonHoc.setDiem(diemCursor.getFloat(0));
             } else {
@@ -173,7 +172,7 @@ public class StudentEditorActivity extends AppCompatActivity {
                     ho + "', '" + ten + "', '" + phai + "', '" + ngaySinh + "', '" + maLop + "')";
             dbHelper.QueryData(sqlHocSinh);
 
-            Cursor cursor = dbHelper.GetData("SELECT last_insert_rowid()");
+            Cursor cursor = dbHelper.GetData("SELECT last_insert_rowid()", new String[]{String.valueOf(maHocSinh)});
             cursor.moveToFirst();
             maHS = String.valueOf(cursor.getInt(0));
             cursor.close();

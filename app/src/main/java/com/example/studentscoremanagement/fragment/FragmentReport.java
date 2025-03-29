@@ -3,8 +3,6 @@ package com.example.studentscoremanagement.fragment;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,12 +30,10 @@ import android.widget.Toast;
 
 import com.example.studentscoremanagement.Adapter.ReportItemAdapter;
 import com.example.studentscoremanagement.DBHelper;
-import com.example.studentscoremanagement.DSSV;
 import com.example.studentscoremanagement.Model.DiemHocSinhDTO;
 import com.example.studentscoremanagement.Model.DiemMonHocDTO;
 import com.example.studentscoremanagement.Model.HocSinh;
 import com.example.studentscoremanagement.R;
-import com.example.studentscoremanagement.ReportActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -130,7 +125,7 @@ public class FragmentReport extends Fragment {
         tvTeacherName.setText(TEACHER_NAME);
         dbHelper = new DBHelper(getContext());
         ArrayList<HocSinh> hocSinhs = new ArrayList<>();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+CLASS_ID+"'");
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+CLASS_ID+"'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         cursor.moveToFirst();
         do {
             HocSinh hocSinh = new HocSinh();

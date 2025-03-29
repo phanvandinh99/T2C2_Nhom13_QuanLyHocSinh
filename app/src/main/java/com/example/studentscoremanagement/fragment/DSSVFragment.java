@@ -2,7 +2,6 @@ package com.example.studentscoremanagement.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -117,7 +116,7 @@ public class DSSVFragment extends Fragment {
             String noiDung = edtTimKiem.getText().toString().trim();
             Cursor dataHS = database.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH +
                     " WHERE (hocSinh_maHocSinh LIKE '%" + noiDung + "%' OR hocSinh_ho LIKE '%" + noiDung + "%' OR hocSinh_ten LIKE '%" + noiDung + "%') AND " +
-                    DBHelper.COL_HOCSINH_MALOP + "= '" + CLASS_ID + "'");
+                    DBHelper.COL_HOCSINH_MALOP + "= '" + CLASS_ID + "'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
             arrayHocSinh.clear();
             if (dataHS != null && dataHS.moveToFirst()) {
                 do {
@@ -138,7 +137,7 @@ public class DSSVFragment extends Fragment {
         arrayHocSinh.clear();
 
         // Lấy tên giáo viên chủ nhiệm
-        Cursor getTeacherName = database.GetData("SELECT " + DBHelper.COL_LOP_CHUNHIEM + " FROM " + DBHelper.TB_LOP + " WHERE " + DBHelper.COL_LOP_MALOP + "='" + CLASS_ID + "'");
+        Cursor getTeacherName = database.GetData("SELECT " + DBHelper.COL_LOP_CHUNHIEM + " FROM " + DBHelper.TB_LOP + " WHERE " + DBHelper.COL_LOP_MALOP + "='" + CLASS_ID + "'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         if (getTeacherName != null && getTeacherName.moveToFirst()) {
             teacherName = getTeacherName.getString(0);
         } else {
@@ -148,7 +147,7 @@ public class DSSVFragment extends Fragment {
         if (getTeacherName != null) getTeacherName.close();
 
         // Lấy danh sách học sinh
-        Cursor dataHS = database.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='" + CLASS_ID + "'");
+        Cursor dataHS = database.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='" + CLASS_ID + "'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         if (dataHS != null && dataHS.moveToFirst()) {
             do {
                 String id = dataHS.getString(0);
@@ -170,7 +169,7 @@ public class DSSVFragment extends Fragment {
     }
 
     private void GetDataLop() {
-        Cursor data = database.GetData("SELECT " + DBHelper.COL_LOP_MALOP + " FROM " + DBHelper.TB_LOP);
+        Cursor data = database.GetData("SELECT " + DBHelper.COL_LOP_MALOP + " FROM " + DBHelper.TB_LOP, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         arrayLop.clear();
         if (data != null && data.moveToFirst()) {
             do {

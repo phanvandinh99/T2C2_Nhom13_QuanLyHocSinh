@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -139,7 +137,7 @@ public class StudentManagerActivity extends AppCompatActivity {
         Cursor data =db.GetData("SELECT "+ DBHelper.COL_HOCSINH_HO +", "+DBHelper.COL_TAIKHOAN_TEN +
                 ", " + DBHelper.COL_HOCSINH_PHAI + ", " + DBHelper.COL_HOCSINH_NGAYSINH + ", " + DBHelper.COL_HOCSINH_MALOP +
                 " FROM "+ DBHelper.TB_HOCSINH
-                +" WHERE "+ DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS);
+                +" WHERE "+ DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS, new String[]{String.valueOf(maHocSinh)});
         if(data.moveToNext()){
             ho = data.getString(0);
             ten = data.getString(1);
@@ -163,7 +161,7 @@ public class StudentManagerActivity extends AppCompatActivity {
         String heSo;
 
         Cursor data = db.GetData("SELECT " + DBHelper.COL_MONHOC_MAMONHOC + ", " + DBHelper.COL_MONHOC_TENMONHOC
-               + ", " + DBHelper.COL_MONHOC_HESO + " FROM " + DBHelper.TB_MONHOC);
+               + ", " + DBHelper.COL_MONHOC_HESO + " FROM " + DBHelper.TB_MONHOC, new String[]{String.valueOf(maHocSinh)});
         while(data.moveToNext())
         {
             tongSoMH += 1 ;
@@ -192,7 +190,7 @@ public class StudentManagerActivity extends AppCompatActivity {
 
             Cursor dataDiem = db.GetData("SELECT " + DBHelper.COL_DIEM_DIEM + " FROM " + DBHelper.TB_DIEM
                     + " WHERE " + DBHelper.COL_DIEM_MAHOCSINH + " = " + maHS +
-                    " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + maMH);
+                    " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + maMH, new String[]{String.valueOf(maHocSinh)});
 
             if(dataDiem.moveToNext())
             {
@@ -232,7 +230,7 @@ public class StudentManagerActivity extends AppCompatActivity {
 
     private void layDSLop(DBHelper db) {
         Cursor dsLopData = db.GetData("SELECT " + DBHelper.COL_HOCSINH_MAHOCSINH + " FROM " + DBHelper.TB_HOCSINH
-                + " WHERE " + DBHelper.COL_HOCSINH_MALOP + " = '" + maLop + "'");
+                + " WHERE " + DBHelper.COL_HOCSINH_MALOP + " = '" + maLop + "'", new String[]{String.valueOf(maHocSinh)});
         while(dsLopData.moveToNext())
         {
             String data = dsLopData.getString(0);

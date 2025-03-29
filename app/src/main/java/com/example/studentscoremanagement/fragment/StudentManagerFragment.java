@@ -1,7 +1,6 @@
 package com.example.studentscoremanagement.fragment;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.studentscoremanagement.DBHelper;
 import com.example.studentscoremanagement.R;
-import com.example.studentscoremanagement.StudentManagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,7 +180,7 @@ public class StudentManagerFragment extends Fragment {
         Cursor data =db.GetData("SELECT "+ DBHelper.COL_HOCSINH_HO +", "+DBHelper.COL_HOCSINH_TEN +
                 ", " + DBHelper.COL_HOCSINH_PHAI + ", " + DBHelper.COL_HOCSINH_NGAYSINH + ", " + DBHelper.COL_HOCSINH_MALOP +
                 " FROM "+ DBHelper.TB_HOCSINH
-                +" WHERE "+ DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS);
+                +" WHERE "+ DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         if(data.moveToNext()){
             ho = data.getString(0);
             ten = data.getString(1);
@@ -206,7 +204,7 @@ public class StudentManagerFragment extends Fragment {
         String heSo;
 
         Cursor data = db.GetData("SELECT " + DBHelper.COL_MONHOC_MAMONHOC + ", " + DBHelper.COL_MONHOC_TENMONHOC
-                + ", " + DBHelper.COL_MONHOC_HESO + " FROM " + DBHelper.TB_MONHOC);
+                + ", " + DBHelper.COL_MONHOC_HESO + " FROM " + DBHelper.TB_MONHOC, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         while(data.moveToNext())
         {
             tongSoMH += 1 ;
@@ -236,7 +234,7 @@ public class StudentManagerFragment extends Fragment {
 
             Cursor dataDiem = db.GetData("SELECT " + DBHelper.COL_DIEM_DIEM + " FROM " + DBHelper.TB_DIEM
                     + " WHERE " + DBHelper.COL_DIEM_MAHOCSINH + " = " + maHS +
-                    " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + maMH);
+                    " AND " + DBHelper.COL_DIEM_MAMONHOC + " = " + maMH, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
 
             if(dataDiem.moveToNext())
             {
@@ -274,7 +272,7 @@ public class StudentManagerFragment extends Fragment {
 
     private void layDSLop(DBHelper db) {
         Cursor dsLopData = db.GetData("SELECT " + DBHelper.COL_HOCSINH_MAHOCSINH + " FROM " + DBHelper.TB_HOCSINH
-                + " WHERE " + DBHelper.COL_HOCSINH_MALOP + " = '" + maLop + "'");
+                + " WHERE " + DBHelper.COL_HOCSINH_MALOP + " = '" + maLop + "'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         while(dsLopData.moveToNext())
         {
             String data = dsLopData.getString(0);

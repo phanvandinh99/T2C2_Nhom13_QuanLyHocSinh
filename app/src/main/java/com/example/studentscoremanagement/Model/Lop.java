@@ -37,7 +37,7 @@ public class Lop {
     public static ArrayList<String> getAllClassId (DBHelper database)
     {
         ArrayList<String> data = new ArrayList<>();
-        Cursor cursor = database.GetData("SELECT " + DBHelper.COL_LOP_MALOP + " FROM " + DBHelper.TB_LOP);
+        Cursor cursor = database.GetData("SELECT " + DBHelper.COL_LOP_MALOP + " FROM " + DBHelper.TB_LOP, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         cursor.moveToFirst();
 
         do {

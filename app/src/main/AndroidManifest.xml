@@ -50,6 +50,8 @@
             android:exported="true" />
 
         <activity android:name=".StudentEditorActivity" />
+        <activity android:name=".StudentScoreActivity"/>
+        <activity android:name=".StudentLoginActivity" />
     </application>
 
 </manifest>
