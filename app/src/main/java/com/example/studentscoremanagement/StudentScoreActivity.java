@@ -27,7 +27,7 @@ public class StudentScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_score);
 
         recyclerViewScores = findViewById(R.id.recyclerViewScores);
-        btnLogout = findViewById(R.id.btnLogout); // Khởi tạo nút Logout
+        btnLogout = findViewById(R.id.btnLogout);
         dbHelper = new DBHelper(this);
         maHocSinh = getIntent().getIntExtra("maHocSinh", -1);
 
@@ -55,8 +55,8 @@ public class StudentScoreActivity extends AppCompatActivity {
                         " INNER JOIN " + DBHelper.TB_MONHOC +
                         " ON " + DBHelper.TB_DIEM + "." + DBHelper.COL_DIEM_MAMONHOC + " = " +
                         DBHelper.TB_MONHOC + "." + DBHelper.COL_MONHOC_MAMONHOC +
-                        " WHERE " + DBHelper.TB_DIEM + "." + DBHelper.COL_DIEM_MAHOCSINH + " = ?",
-                new String[]{String.valueOf(maHocSinh)}
+                        " WHERE " + DBHelper.TB_DIEM + "." + DBHelper.COL_DIEM_MAHOCSINH + " = '" + maHocSinh + "'",
+                null
         );
 
         while (cursor.moveToNext()) {

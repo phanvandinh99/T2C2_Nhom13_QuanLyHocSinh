@@ -35,23 +35,25 @@ public class StudentLoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Kiểm tra đăng nhập trong bảng tbHocSinh
-                Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH +
-                        " WHERE hocSinh_tenDangNhap = '" + username + "' AND hocSinh_matKhau = '" + password + "'", new String[]{String.valueOf(maHocSinh)});
+                Cursor cursor = dbHelper.GetData(
+                        "SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE hocSinh_tenDangNhap = '" + username + "' AND hocSinh_matKhau = '" + password + "'",
+                        null
+                );
 
                 if (cursor.moveToFirst()) {
-                    // Lấy mã học sinh để truyền sang màn hình xem điểm
-                    int maHocSinh = cursor.getInt(cursor.getColumnIndex(DBHelper.COL_HOCSINH_MAHOCSINH));
+                    // Get the actual student ID from the cursor - column 0 is the ID
+                    int maHocSinh = cursor.getInt(0);  // The first column is hocSinh_maHocSinh
                     Toast.makeText(StudentLoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
-                    // Chuyển sang màn hình xem điểm
                     Intent intent = new Intent(StudentLoginActivity.this, StudentScoreActivity.class);
-                    intent.putExtra("maHocSinh", maHocSinh);
+                    intent.putExtra("maHocSinh", maHocSinh); // Pass the actual student ID
                     startActivity(intent);
                     finish();
                 } else {
+                    // Login failed
                     Toast.makeText(StudentLoginActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                 }
+
                 cursor.close();
             }
         });

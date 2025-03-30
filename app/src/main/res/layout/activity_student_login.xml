@@ -33,15 +33,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên đăng nhập"/>
+            android:text="Tài khoản"/>
         <EditText
             android:id="@+id/txtStudentUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/style_editText"
             android:background="@drawable/custom_edit_text"
+            android:backgroundTint="#F4F4F4"
             android:padding="5dp"
             android:textColor="@color/black"/>
-
         <TextView
             android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
@@ -55,11 +54,13 @@
             <EditText
                 android:id="@+id/txtStudentPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/custom_edit_text"
-                android:inputType="textPassword"
+                android:backgroundTint="#F4F4F4"
+                android:textSize="15sp"
                 android:padding="5dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

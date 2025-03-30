@@ -78,7 +78,7 @@ public class ReportActivity extends AppCompatActivity {
         getIdClass();
         dbHelper = new DBHelper(this);
         ArrayList<HocSinh> hocSinhs = new ArrayList<>();
-        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+idClass+"'", new String[]{String.valueOf(maHocSinh)});
+        Cursor cursor = dbHelper.GetData("SELECT * FROM " + DBHelper.TB_HOCSINH + " WHERE " + DBHelper.COL_HOCSINH_MALOP + "='"+idClass+"'", new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
         cursor.moveToFirst();
         do {
             HocSinh hocSinh = new HocSinh();

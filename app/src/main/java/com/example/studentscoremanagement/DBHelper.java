@@ -115,11 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor GetData(String sql, String[] strings){
         SQLiteDatabase database =getReadableDatabase();
         return database.rawQuery(sql, null);
-
     }
-
-
-
 
     public void themTK(TaiKhoan taiKhoan) {
         SQLiteDatabase db=getWritableDatabase();
