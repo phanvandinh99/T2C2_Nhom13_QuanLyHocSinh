@@ -25,6 +25,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ngày sinh" />
+    <EditText
+        android:id="@+id/editTextNhapTenDangNhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên đăng nhập" />
+    <EditText
+        android:id="@+id/editTextNhapMatKhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword" />
 
     <LinearLayout
         android:layout_width="match_parent"

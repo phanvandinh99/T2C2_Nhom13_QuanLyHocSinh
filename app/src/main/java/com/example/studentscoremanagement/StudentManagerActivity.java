@@ -33,7 +33,7 @@ public class StudentManagerActivity extends AppCompatActivity {
     DBHelper database;
     TableLayout tbL;
     Button btnTruoc, btnSau;
-    TextView tvMaHS, tvHoTen, tvNgaySinh, tvLop, tvPhai, tvTongMH, tvDiemTB;
+    TextView tvMaHS, tvHoTen, tvNgaySinh, tvLop, tvPhai, tvTongMH, tvDiemTB, tvTenDangNhap, tvMatKhau;
     List<String> dsHS = new ArrayList<>();
 
 
@@ -57,6 +57,8 @@ public class StudentManagerActivity extends AppCompatActivity {
         tbL = (TableLayout) findViewById(R.id.tbDiem);
         tvTongMH = findViewById(R.id.tvTongMH);
         tvDiemTB = findViewById(R.id.tvDiemTB);
+        tvTenDangNhap = findViewById(R.id.tvTenDangNhap);
+        tvMatKhau = findViewById(R.id.tvMatKhau);
     }
 
 
@@ -132,26 +134,35 @@ public class StudentManagerActivity extends AppCompatActivity {
     }
 
 
-    public void layThongTin(DBHelper db){
-        String ho, ten, phai, ngaysinh, malop = "";
-        Cursor data =db.GetData("SELECT "+ DBHelper.COL_HOCSINH_HO +", "+DBHelper.COL_TAIKHOAN_TEN +
-                ", " + DBHelper.COL_HOCSINH_PHAI + ", " + DBHelper.COL_HOCSINH_NGAYSINH + ", " + DBHelper.COL_HOCSINH_MALOP +
-                " FROM "+ DBHelper.TB_HOCSINH
-                +" WHERE "+ DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS, new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
-        if(data.moveToNext()){
+    public void layThongTin(DBHelper db) {
+        String ho, ten, phai, ngaysinh, malop, tenDangNhap, matKhau;
+        Cursor data = db.GetData("SELECT " + DBHelper.COL_HOCSINH_HO + ", " + DBHelper.COL_HOCSINH_TEN +
+                        ", " + DBHelper.COL_HOCSINH_PHAI + ", " + DBHelper.COL_HOCSINH_NGAYSINH + ", " +
+                        DBHelper.COL_HOCSINH_MALOP + ", hocSinh_tenDangNhap, hocSinh_matKhau" +
+                        " FROM " + DBHelper.TB_HOCSINH +
+                        " WHERE " + DBHelper.COL_HOCSINH_MAHOCSINH + "= " + maHS,
+                new String[]{String.valueOf(DBHelper.COL_HOCSINH_MAHOCSINH)});
+
+        if (data.moveToNext()) {
             ho = data.getString(0);
             ten = data.getString(1);
             phai = data.getString(2);
             ngaysinh = data.getString(3);
             malop = data.getString(4);
+            tenDangNhap = data.getString(5);
+            matKhau = data.getString(6);
             maLop = malop;
-            tvMaHS.setText(""+maHS);
+
+            // Hiển thị thông tin
+            tvMaHS.setText("" + maHS);
             tvHoTen.setText(ho + " " + ten);
             tvLop.setText(malop);
             tvNgaySinh.setText(ngaysinh);
             tvPhai.setText(phai);
+            tvTenDangNhap.setText(tenDangNhap);
+            tvMatKhau.setText(matKhau);
         }
-
+        data.close(); // Đóng Cursor để tránh rò rỉ bộ nhớ
     }
 
     private void layMonHoc(DBHelper db) {

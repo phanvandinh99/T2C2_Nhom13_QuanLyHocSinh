@@ -124,35 +124,44 @@ public class DSSV extends AppCompatActivity {
     }
 
 
-    private  void ThemSinhVien(){
+    private void ThemSinhVien() {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.themhocsinh);
 
-
-        EditText editHo = (EditText) dialog.findViewById(R.id.editTextNhapHo);
-        EditText editTen = (EditText) dialog.findViewById(R.id.editTextNhapTen);
-        EditText editPhai = (EditText) dialog.findViewById(R.id.editTextNhapPhai);
-        EditText editNSinh = (EditText) dialog.findViewById(R.id.editTextNhapNgaySinh);
-        Button btnHuy = (Button) dialog.findViewById(R.id.btnHuy);
-        Button btnThem = (Button) dialog.findViewById(R.id.buttonLUU);
+        EditText editHo = dialog.findViewById(R.id.editTextNhapHo);
+        EditText editTen = dialog.findViewById(R.id.editTextNhapTen);
+        EditText editPhai = dialog.findViewById(R.id.editTextNhapPhai);
+        EditText editNSinh = dialog.findViewById(R.id.editTextNhapNgaySinh);
+        EditText editTenDangNhap = dialog.findViewById(R.id.editTextNhapTenDangNhap);
+        EditText editMatKhau = dialog.findViewById(R.id.editTextNhapMatKhau);
+        Button btnHuy = dialog.findViewById(R.id.btnHuy);
+        Button btnThem = dialog.findViewById(R.id.buttonLUU);
 
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String ho = editHo.getText().toString().trim();
+                String ten = editTen.getText().toString().trim();
+                String phai = editPhai.getText().toString().trim();
+                String ngaysinh = editNSinh.getText().toString().trim();
+                String tenDangNhap = editTenDangNhap.getText().toString().trim();
+                String matKhau = editMatKhau.getText().toString().trim();
 
-                String ho = editHo.getText().toString();
-                String ten = editTen.getText().toString();
-                String phai = editPhai.getText().toString();
-                String ngaysinh= editNSinh.getText().toString();
-                if( ho.equals("") || ten.equals("") || phai.equals("") ||ngaysinh.equals("")){
-                    Toast.makeText(DSSV.this, "Vui lòng nhập không để trống!", Toast.LENGTH_SHORT).show();
-                }else {
-                   // database.QueryData("INSERT INTO " + DBHelper.TB_HOCSINH+" VALUES ( "+DBHelper.COL_HOCSINH_MAHOCSINH+" = '"+mhs +"', " +
-                       //     " "+DBHelper.COL_HOCSINH_HO+" ='"+ho+"', "+DBHelper.COL_HOCSINH_TEN+" ='"+ten+"', "+DBHelper.COL_HOCSINH_PHAI+" ='"+phai+"', "+DBHelper.COL_HOCSINH_NGAYSINH+" ='"+ngaysinh+"')");
-                    Toast.makeText(DSSV.this, "Đã Thêm", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                    GetDataHocSinh();
+                if (ho.isEmpty() || ten.isEmpty() || phai.isEmpty() || ngaysinh.isEmpty() ||
+                        tenDangNhap.isEmpty() || matKhau.isEmpty()) {
+                    Toast.makeText(DSSV.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        database.QueryData("INSERT INTO " + DBHelper.TB_HOCSINH + " VALUES (null, '" +
+                                ho + "', '" + ten + "', '" + phai + "', '" + ngaysinh + "', '" +
+                                idClass + "', '" + tenDangNhap + "', '" + matKhau + "')");
+                        Toast.makeText(DSSV.this, "Đã Thêm", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        GetDataHocSinh();
+                    } catch (Exception e) {
+                        Toast.makeText(DSSV.this, "Lỗi khi thêm: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

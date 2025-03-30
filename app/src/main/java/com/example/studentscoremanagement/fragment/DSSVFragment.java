@@ -188,25 +188,33 @@ public class DSSVFragment extends Fragment {
         EditText editTen = dialog.findViewById(R.id.editTextNhapTen);
         EditText editPhai = dialog.findViewById(R.id.editTextNhapPhai);
         EditText editNSinh = dialog.findViewById(R.id.editTextNhapNgaySinh);
+        EditText editTenDangNhap = dialog.findViewById(R.id.editTextNhapTenDangNhap);
+        EditText editMatKhau = dialog.findViewById(R.id.editTextNhapMatKhau);
         Button btnHuy = dialog.findViewById(R.id.btnHuy);
         Button btnThem = dialog.findViewById(R.id.buttonLUU);
 
         btnThem.setOnClickListener(v -> {
-            String ho = editHo.getText().toString();
-            String ten = editTen.getText().toString();
-            String phai = editPhai.getText().toString();
-            String ngaysinh = editNSinh.getText().toString();
-            if (ho.isEmpty() || ten.isEmpty() || phai.isEmpty() || ngaysinh.isEmpty()) {
-                Toast.makeText(getContext(), "Vui lòng nhập không để trống!", Toast.LENGTH_SHORT).show();
+            String ho = editHo.getText().toString().trim();
+            String ten = editTen.getText().toString().trim();
+            String phai = editPhai.getText().toString().trim();
+            String ngaysinh = editNSinh.getText().toString().trim();
+            String tenDangNhap = editTenDangNhap.getText().toString().trim();
+            String matKhau = editMatKhau.getText().toString().trim();
+
+            if (ho.isEmpty() || ten.isEmpty() || phai.isEmpty() || ngaysinh.isEmpty() ||
+                    tenDangNhap.isEmpty() || matKhau.isEmpty()) {
+                Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             } else {
                 try {
-                    database.QueryData("INSERT INTO " + DBHelper.TB_HOCSINH + " VALUES ( " + null + ", '" +
-                            ho + "', '" + ten + "', '" + phai + "', '" + ngaysinh + "', '" + CLASS_ID + "')");
+                    database.QueryData("INSERT INTO " + DBHelper.TB_HOCSINH + " VALUES (null, '" +
+                            ho + "', '" + ten + "', '" + phai + "', '" + ngaysinh + "', '" +
+                            CLASS_ID + "', '" + tenDangNhap + "', '" + matKhau + "')");
                     Toast.makeText(getContext(), "Đã Thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataHocSinh();
                 } catch (Exception e) {
                     Log.d("DSSVFragment", "Error adding student: " + e.getMessage());
+                    Toast.makeText(getContext(), "Lỗi khi thêm: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

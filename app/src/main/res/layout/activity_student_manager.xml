@@ -124,6 +124,16 @@
                 android:layout_weight="3"
                 android:id="@+id/tvPhai"/>
         </LinearLayout>
+        <TextView
+            android:id="@+id/tvTenDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên đăng nhập: " />
+        <TextView
+            android:id="@+id/tvMatKhau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mật khẩu: " />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
